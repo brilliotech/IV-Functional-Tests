@@ -26,6 +26,8 @@ public class TestClass {
 	@Test
 	public void test1(){
 		try {
+			Thread.sleep(4000);
+			System.out.println("Maximizing chrome window !!");
 			driver.manage().window().maximize();
 			driver.navigate().to("http://testcoe:8080/Image-Validation");
 			
