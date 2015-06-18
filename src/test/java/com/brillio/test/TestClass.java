@@ -5,7 +5,9 @@ import java.util.Date;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.phantomjs.PhantomJSDriver;
+import org.openqa.selenium.phantomjs.PhantomJSDriverService;
+import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.annotations.AfterTest;
@@ -18,9 +20,21 @@ public class TestClass {
 	
 	@BeforeTest
 	public void setUp(){
-		System.setProperty("webdriver.chrome.driver", "drivers/chromedriver.exe");
+		/*System.setProperty("webdriver.chrome.driver", "drivers/chromedriver.exe");
 		driver = new ChromeDriver();
-		System.out.println("Chrome Browser Instance Invoked !!");
+		System.out.println("Chrome Browser Instance Invoked !!");*/
+		DesiredCapabilities caps = new DesiredCapabilities();
+        caps.setJavascriptEnabled(true); 
+        caps.setCapability("takesScreenshot", true);
+        caps.setCapability(PhantomJSDriverService.PHANTOMJS_EXECUTABLE_PATH_PROPERTY, "drivers/phantomjs.exe");          
+        caps.setCapability("phantomjs.page.customHeaders.Accept", "text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8");
+        caps.setCapability("phantomjs.page.customHeaders.Accept-Language", "en-GB,en-US;q=0.8,en;q=0.6");
+        caps.setCapability(PhantomJSDriverService.PHANTOMJS_CLI_ARGS, new String[] {
+            "--web-security=false",
+            "--ssl-protocol=any",
+            "--ignore-ssl-errors=true"
+        });
+        driver  = new PhantomJSDriver(caps);
 	}
 	
 	@Test
@@ -44,9 +58,10 @@ public class TestClass {
 			elem1.clear();
 			elem1.sendKeys("90");
 			
+			System.out.println(elem1.getLocation());
 			System.out.println("Form Data Filled !!");
 			Thread.sleep(4000);
-	
+			
 			driver.findElement(By.xpath("//*[@id='screenShotButton']")).click();
 			System.out.println("Job has been submitted !!");
 			Thread.sleep(5000);
