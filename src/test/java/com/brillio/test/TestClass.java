@@ -28,8 +28,8 @@ public class TestClass {
 		try {
 			Thread.sleep(4000);
 			System.out.println("Maximizing chrome window !!");
-			driver.manage().window().maximize();
-			driver.navigate().to("http://localhost:8080/Image-Validation");
+			//driver.manage().window().maximize();
+			driver.get("http://localhost:8080/Image-Validation");
 			
 			System.out.println("Target URL supplied to webdriver !!");
 			
