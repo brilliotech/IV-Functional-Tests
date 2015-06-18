@@ -22,22 +22,28 @@ public class TestClass {
 	
 	@Test
 	public void test1(){
-		driver.manage().window().maximize();
-		driver.navigate().to("http://testcoe:8080/Image-Validation");
-		driver.findElement(By.xpath("//*[@id='job_Name']")).sendKeys("Job-"+new Date().getTime());
-		driver.findElement(By.xpath("//*[@id='base_url']")).sendKeys("http://www.brillio.com");
-		WebElement elem = driver.findElement(By.xpath("//*[@id='crawl_level']"));
-		elem.clear();
-		elem.sendKeys("1");
-		
-		WebElement elem1 = driver.findElement(By.xpath("//*[@id='threshold']"));
-		elem1.clear();
-		elem1.sendKeys("90");
-		
-		driver.findElement(By.xpath("//*[@id='screenShotButton']")).click();
 		try {
+			driver.manage().window().maximize();
+			driver.navigate().to("http://testcoe:8080/Image-Validation");
+			driver.findElement(By.xpath("//*[@id='job_Name']")).sendKeys("Job-"+new Date().getTime());
+			driver.findElement(By.xpath("//*[@id='base_url']")).sendKeys("http://www.brillio.com");
+			WebElement elem = driver.findElement(By.xpath("//*[@id='crawl_level']"));
+			elem.clear();
+			elem.sendKeys("1");
+			
+			WebElement elem1 = driver.findElement(By.xpath("//*[@id='threshold']"));
+			elem1.clear();
+			elem1.sendKeys("90");
+
+			Thread.sleep(4000);
+	
+			driver.findElement(By.xpath("//*[@id='screenShotButton']")).click();
+
 			Thread.sleep(5000);
+		} catch (InterruptedException e) {
+			e.printStackTrace();
 		} catch (Exception e) {
+			e.printStackTrace();
 		}
 	}
 	
