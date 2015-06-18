@@ -31,7 +31,7 @@ public class TestClass {
 			
 			System.out.println("Target URL supplied to webdriver !!");
 			
-			WebElement jobName = (new WebDriverWait(driver, 10)).until(ExpectedConditions.elementToBeClickable(By.xpath("//*[@id='job_Name']")));
+			WebElement jobName = (new WebDriverWait(driver, 30)).until(ExpectedConditions.elementToBeClickable(By.xpath("//*[@id='job_Name']")));
 			jobName.sendKeys("Job-"+new Date().getTime());
 			driver.findElement(By.xpath("//*[@id='base_url']")).sendKeys("http://www.brillio.com");
 			WebElement elem = driver.findElement(By.xpath("//*[@id='crawl_level']"));
