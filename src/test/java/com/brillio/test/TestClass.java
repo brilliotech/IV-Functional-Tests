@@ -14,7 +14,7 @@ import org.testng.annotations.Test;
 
 public class TestClass {
 
-	WebDriver driver;
+	static WebDriver driver;
 	
 	@BeforeTest
 	public void setUp(){
@@ -57,7 +57,9 @@ public class TestClass {
 	
 	@AfterTest
 	public void tearDown(){
-		driver.quit();
+		System.out.println("Process Done - Closing !!");
+		driver.close();
+		System.out.println("Driver Closed !!");
 	}
 	
 }
