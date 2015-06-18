@@ -2,6 +2,8 @@ package com.brillio.test;
 
 import java.util.Date;
 
+import junit.framework.Assert;
+
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -40,10 +42,10 @@ public class TestClass {
 	@Test
 	public void test1(){
 		try {
-			Thread.sleep(4000);
+			Thread.sleep(1000);
 			System.out.println("Maximizing chrome window !!");
 			//driver.manage().window().maximize();
-			driver.get("http://localhost:8080/Image-Validation");
+			driver.get("http://testcoe:8080/Image-Validation");
 			
 			System.out.println("Target URL supplied to webdriver !!");
 			
@@ -58,24 +60,28 @@ public class TestClass {
 			elem1.clear();
 			elem1.sendKeys("90");
 			
-			System.out.println(elem1.getLocation());
 			System.out.println("Form Data Filled !!");
 			Thread.sleep(4000);
 			
 			driver.findElement(By.xpath("//*[@id='screenShotButton']")).click();
 			System.out.println("Job has been submitted !!");
 			Thread.sleep(5000);
+			
+			Assert.assertEquals(elem1.getAttribute("id"), "threshold");
 		} catch (InterruptedException e) {
 			e.printStackTrace();
+			driver.close();
 		} catch (Exception e) {
 			e.printStackTrace();
+			driver.close();
 		}
 	}
 	
 	@AfterTest
 	public void tearDown(){
 		System.out.println("Process Done - Closing !!");
-		driver.close();
+		if(driver != null)
+			driver.close();
 		System.out.println("Driver Closed !!");
 	}
 	
