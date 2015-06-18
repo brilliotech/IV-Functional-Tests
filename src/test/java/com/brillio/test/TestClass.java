@@ -20,6 +20,7 @@ public class TestClass {
 	public void setUp(){
 		System.setProperty("webdriver.chrome.driver", "drivers/chromedriver.exe");
 		driver = new ChromeDriver();
+		System.out.println("Chrome Browser Instance Invoked !!");
 	}
 	
 	@Test
@@ -27,6 +28,8 @@ public class TestClass {
 		try {
 			driver.manage().window().maximize();
 			driver.navigate().to("http://testcoe:8080/Image-Validation");
+			
+			System.out.println("Target URL supplied to webdriver !!");
 			
 			WebElement jobName = (new WebDriverWait(driver, 10)).until(ExpectedConditions.elementToBeClickable(By.xpath("//*[@id='job_Name']")));
 			jobName.sendKeys("Job-"+new Date().getTime());
@@ -38,11 +41,12 @@ public class TestClass {
 			WebElement elem1 = driver.findElement(By.xpath("//*[@id='threshold']"));
 			elem1.clear();
 			elem1.sendKeys("90");
-
+			
+			System.out.println("Form Data Filled !!");
 			Thread.sleep(4000);
 	
 			driver.findElement(By.xpath("//*[@id='screenShotButton']")).click();
-
+			System.out.println("Job has been submitted !!");
 			Thread.sleep(5000);
 		} catch (InterruptedException e) {
 			e.printStackTrace();
