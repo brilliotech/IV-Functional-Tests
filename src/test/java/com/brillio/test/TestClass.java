@@ -7,7 +7,7 @@ import junit.framework.Assert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.annotations.AfterTest;
@@ -20,9 +20,10 @@ public class TestClass {
 	
 	@BeforeTest
 	public void setUp(){
-		System.setProperty("webdriver.chrome.driver", "drivers/chromedriver.exe");
+		/*System.setProperty("webdriver.chrome.driver", "drivers/chromedriver.exe");
 		driver = new ChromeDriver();
-		System.out.println("Chrome Browser Instance Invoked !!");
+		System.out.println("Chrome Browser Instance Invoked !!");*/
+		driver = new FirefoxDriver();
 		/*DesiredCapabilities caps = new DesiredCapabilities();
         caps.setJavascriptEnabled(true); 
         caps.setCapability("takesScreenshot", true);
@@ -80,8 +81,10 @@ public class TestClass {
 	@AfterTest
 	public void tearDown(){
 		System.out.println("Process Done - Closing !!");
-		if(driver != null)
+		if(driver != null){
 			driver.close();
+			driver.quit();
+		}
 		System.out.println("Driver Closed !!");
 	}
 	
